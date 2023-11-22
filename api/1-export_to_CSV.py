@@ -25,7 +25,7 @@ about his/her TODO list progress."""
     file_name = f'{user_id}.csv'
 
     with open(file_name, mode='w', newline='') as csv_file:
-        writer = csv.writer(csv.file)
+        writer = csv.writer(csv_file)
         writer.writerow(['USER_ID', 'USERNAME', 'TASKS_COMPLETED_STATUS',
                         'TASK_TITLE'])
         writer.writerows(comp_tasks)
