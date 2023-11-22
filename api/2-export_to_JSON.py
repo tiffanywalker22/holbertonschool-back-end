@@ -19,7 +19,7 @@ about his/her TODO list progress."""
     todo_request = requests.get(todo_url,
                                 params={'userId': employee_id}).json()
     name = employee_request.get('name')
-    comp_tasks =[task for task in todo_request if task ['completed']]
+    comp_tasks = [task for task in todo_request if task['completed']]
 
     tasks = [{'task': task['title'], 'completed':
              task['completed'], 'username': name} for task in comp_tasks]
