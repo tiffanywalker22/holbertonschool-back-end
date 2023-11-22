@@ -24,17 +24,17 @@ about his/her TODO list progress."""
                    task['title']) for task in todo_request]
     file_name = f'{user_id}.csv'
 
-    with open (file_name, mode='w', newline='') as csv_file:
+    with open(file_name, mode='w', newline='') as csv_file:
         writer = csv.writer(csv.file)
-        writer.writerow(['USER_ID', 'USERNAME', 'TASKS_COMPLETED_STATUS', 'TASK_TITLE'])
+        writer.writerow(['USER_ID', 'USERNAME', 'TASKS_COMPLETED_STATUS',
+                        'TASK_TITLE'])
         writer.writerows(comp_tasks)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print('Usage: python script.py <emplyee_id>')
-                sys.exit(1)
+        print('Usage: python script.py <employee_id>')
+        sys.exit(1)
 
     employee_id = int(sys.argv[1])
     employee_info(employee_id)
-
-
