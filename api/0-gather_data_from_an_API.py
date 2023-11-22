@@ -29,7 +29,7 @@ about his/her TODO list progress."""
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print('Usage: python script.py <employee_id')
+        print('Usage: python script.py <employee_id>')
         sys.exit(1)
 
     employee_id = int(sys.argv[1])
