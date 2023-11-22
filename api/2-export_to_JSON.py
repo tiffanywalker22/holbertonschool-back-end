@@ -2,7 +2,7 @@
 """Python script that for a given employee ID, returns information
 about his/her TODO list progress."""
 
-import csv
+import json
 import requests
 import sys
 
@@ -19,17 +19,14 @@ about his/her TODO list progress."""
     todo_request = requests.get(todo_url,
                                 params={'userId': employee_id}).json()
     name = employee_request.get('name')
-    user_id = employee_request.get('id')
-    comp_tasks = [(user_id, name, task['completed'],
-                   task['title']) for task in todo_request]
-    file_name = f'{user_id}.csv'
+    comp_tasks = [task for task in todo_request if task ['completed']]
 
-    with open(file_name, mode='w', newline='') as csv_file:
-        writer = csv.writer(csv.file)
-        writer.writerow(['USER_ID', 'USERNAME', 'TASKS_COMPLETED_STATUS',
-                        'TASK_TITLE'])
-        writer.writerows(comp_tasks)
+    tasks = [{'task': task['title'], 'completed':
+             task['completed'], 'username': name} for task in comp_tasks]
+    data = {employee_id: tasks}
 
+    with open(f'{employee_id}.json', mode='w') as file:
+        json.dump(data, file)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
